@@ -1,0 +1,17 @@
+.header_logo {
+    margin: 2rem 0;
+    font-family: 'Dancing Script', cursive;
+}
+
+.header_button {
+    margin-bottom: 2rem;
+}
+
+.footer_logo {
+    margin: 1.5rem 0;
+    font-family: 'Dancing Script', cursive;
+}
+
+.footer_button {
+    margin-top: 2rem;
+}
