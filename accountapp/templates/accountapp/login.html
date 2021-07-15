@@ -7,7 +7,7 @@
             <h4>Sign Up</h4>
         </div>
         <div>
-            <form action="{% url 'accountapp:login' %}", method="post">
+            <form action="{% url 'accountapp:login' %}" method="post">
                 {%  csrf_token %}
                 {% bootstrap_form form %}
                 <div class="m-5">
