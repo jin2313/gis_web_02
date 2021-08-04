@@ -12,7 +12,12 @@
     <div>
         {# 게시글 내용 #}
         <img src="{{ target_article.image.url }}" alt="">
-        <p>{{ target_article.content }}</p>
+        {{ target_article.content }}
+        <div>
+            <a href="{% url 'articleapp:update' pk=target_article.pk %}" class="btn btn-success rounded-pill px-5">
+                Update
+            </a>
+        </div>
     </div>
 </div>
 
