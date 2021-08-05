@@ -1,0 +1,15 @@
+<div class="text-center my-5">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary rounded-pill"> {# get 방식으로 넘겨줄때 ? 뒤에 적기 #}
+            {{ page_obj.previous_page_number }}
+        </a>
+        {% endif %}
+        <a href="#" class="btn btn-dark rounded-pill">
+            {{ page_obj.number }} {# 현재 페이지 넘버 #}
+        </a>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary rounded-pill"> {# get 방식은 ? 뒤에 적기 #}
+            {{ page_obj.next_page_number }}
+        </a>
+        {% endif %}
+    </div>
