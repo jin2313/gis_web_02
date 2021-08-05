@@ -16,7 +16,6 @@
         <div class="article_content">
             {{ target_article.content }}
         </div>
-
         {% if target_article_writer == user %}
         <div>
             <a href="{% url 'articleapp:update' pk=target_article.pk %}" class="btn btn-success rounded-pill px-5">
