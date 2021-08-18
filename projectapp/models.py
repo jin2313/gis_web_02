@@ -6,3 +6,6 @@ class Project(models.Model):
     description = models.CharField(max_length=200, null=False)  # 폼에 아무것도 적지 않아도 된다는 건 아님 -> 그 옵션은 blank
     image = models.ImageField(upload_to='project/', null=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name}'
