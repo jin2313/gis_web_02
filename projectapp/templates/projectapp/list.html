@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <style>
+        .container {
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .container div {
+            width: 45%;
+            max-width: 200px;
+            display: flex; {# 이 속성 때문에 제목을 span 태그로 넣으면 사진과 제목이 세로가 아닌 가로로 배치됨 #}
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+            flex-direction: column;
+            box-shadow: 0 0 1rem darkgrey;
+        }
+
+        div img{
+            width: 100%;
+            border-radius: 1rem;
+        }
+    </style>
+
+    <div class="container my-3">
+        {% for project in project_list %}
+            <div>
+                <a href="{% url 'projectapp:detail' pk=project.pk %}">
+                    <img src="{{ project.image.url }}", alt="">
+                </a>
+                <span class="NNS_B m-2">{{ project.name }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script src="{% static 'js/magicgrid.js' %}"></script> <!-- 제일 상단에 load static 하고 적기 -->
+
+    {% include 'snippets/pagination.html' %}
+
+    <div class="text-center">
+        <a href="{% url 'projectapp:create' %}" class="btn btn-outline-dark rounded-pill px-5">
+            Create Project
+        </a>
+    </div>
+
+{% endblock %}
