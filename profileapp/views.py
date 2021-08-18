@@ -10,6 +10,7 @@ from profileapp.decorators import profile_ownership_required
 from profileapp.forms import ProfileCreationForm
 from profileapp.models import Profile
 
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ProfileCreateView(CreateView):
