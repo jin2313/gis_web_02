@@ -10,6 +10,7 @@ from django.views.generic.list import MultipleObjectMixin
 from articleapp.models import Article
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
+from subscribeapp.models import Subscription
 
 
 @method_decorator(login_required, 'get')
@@ -31,8 +32,16 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
+        project = self.object
+        subscription = Subscription.objects.filter(user=user, project=project)
+        if subscription.exists():  # 탬플릿 단에서 구독 정보가 있는지 없는지 확인하기 위한 코드
+            subscription = 1
+        else:
+            subscription = None
+
         article_list = Article.objects.filter(project=self.object)
-        return super().get_context_data(object_list=article_list, **kwargs)
+        return super().get_context_data(object_list=article_list, subscription=subscription, **kwargs)
 
 
 class ProjectListView(ListView):
