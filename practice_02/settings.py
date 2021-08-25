@@ -57,6 +57,12 @@ INSTALLED_APPS = [
     'likeapp',
 ]
 
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger', # 메시지 에러의 태그를 danger로 오버라이딩
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
