@@ -62,3 +62,5 @@ __pycache__/
 /db_backup.sqlite3
 media/
 staticfiles/
+gis_p02
+gis_p02.pub
