@@ -1,0 +1,59 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: nginx:1.19.5
+    networks:
+      - gis2_django_network
+    volumes:
+      - gis2_static:/data/static/
+      - gis2_media:/data/media/
+      - /home/ejrwlfdyd0613/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+    - 80:80
+
+  django:
+    image: gis2_django:4
+    networks:
+      - gis2_django_network
+    secrets:
+      - DJANGO_SECRET_KEY
+      - MARIADB_USER
+      - MARIADB_PASSWORD
+    volumes:
+      - gis2_static:/home/gis_web_02/staticfiles/
+      - gis2_media:/home/gis_web_02/media/
+
+  mariadb:
+    image: mariadb:10.5
+    networks:
+      - gis2_django_network
+    volumes:
+      - gis2_mariadb:/var/lib/mysql
+    secrets:
+      - MARIADB_USER
+      - MARIADB_PASSWORD
+      - MARIADB_ROOT_PASSWORD
+    environment:
+      MARIADB_DATABASE: django
+      MARIADB_USER: django
+      MARIADB_PASSWORD: password1234
+      MARIADB_ROOT_PASSWORD: password1234@!
+
+networks:
+  gis2_django_network:
+
+volumes:
+  gis2_static:
+  gis2_media:
+  gis2_mariadb:
+
+secrets:
+  MARIADB_USER:
+    external: true
+  MARIADB_PASSWORD:
+    external: true
+  MARIADB_ROOT_PASSWORD:
+    external: true
+  DJANGO_SECRET_KEY:
+    external: true
